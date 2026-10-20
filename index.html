@@ -6,12 +6,12 @@ html,body{overscroll-behavior-y:contain}body{touch-action:pan-y}.tablewrap{overs
 #s1 th:nth-child(2),#s1 td:nth-child(2),#s2 th:nth-child(2),#s2 td:nth-child(2){width:128px;max-width:128px}
 #s1 td:nth-child(2) input,#s2 td:nth-child(2) input{width:112px;min-width:0;max-width:100%;padding:10px 7px;font-size:16px}
 #s1 td,#s2 td{padding:7px 5px}#s1 td select,#s2 td select{min-width:65px;padding:9px 4px}
-</style></head><body><div class="wrap"><header><div class="logo">🎛️ SHOWFILE <b>AUTO</b></div><div class="row"><span class="pill">TEST V0.3.3</span><select id="language" class="lang" aria-label="Language"><option value="id">🇮🇩 ID</option><option value="en">🇬🇧 EN</option></select></div></header><section class="hero"><span class="tag">TELEGRAM MINI APP</span><h1 data-i="headline">Show file tanpa ribet.</h1><p data-i="subtitle">Pilih console, isi konfigurasi, dan periksa hasilnya. Ini prototipe formulir—belum ada pembayaran atau pengiriman show file.</p><div class="pill" id="tgStatus">Browser preview</div></section><div class="steps" id="progress"></div>
+</style></head><body><div class="wrap"><header><div class="logo">🎛️ SHOWFILE <b>AUTO</b></div><div class="row"><span class="pill">TEST V0.3.4</span><select id="language" class="lang" aria-label="Language"><option value="id">🇮🇩 ID</option><option value="en">🇬🇧 EN</option></select></div></header><section class="hero"><span class="tag">TELEGRAM MINI APP</span><h1 data-i="headline">Show file tanpa ribet.</h1><p data-i="subtitle">Pilih console, isi konfigurasi, dan periksa hasilnya. Ini prototipe formulir—belum ada pembayaran atau pengiriman show file.</p><div class="pill" id="tgStatus">Browser preview</div></section><div class="steps" id="progress"></div>
 <section class="card" id="s0"><h2 data-i="showInfo">1. Informasi Show</h2><div class="grid"><div class="field"><label data-i="showName">Nama show</label><input id="show" maxlength="64" placeholder="BAND ABC"></div><div class="field"><label data-i="console">Console</label><select id="console"><option value="Midas M32">Midas M32 / M32R</option><option disabled>Behringer X32 — Coming soon</option><option disabled>Yamaha CL / QL — Coming soon</option><option disabled>Yamaha DM3 / DM7 — Coming soon</option></select></div><div class="field"><label data-i="mode">Mode mixing</label><select id="mode"><option value="Monitor">Monitor</option><option value="FOH">FOH</option><option value="FOH + Monitor">FOH + Monitor</option></select></div><div class="field"><label data-i="inputCount">Jumlah input (1–32)</label><input id="count" type="number" min="1" max="32" value="16"></div></div><div class="field"><label id="presetLabel">Quick Preset</label><select id="presetSize"><option value="16">Full Band 16 CH</option><option value="24">Full Band 24 CH</option><option value="32">Full Band 32 CH</option></select></div><div class="toolbar"><button class="secondary" id="preset" data-i="preset">Isi preset Full Band</button></div><details class="card"><summary id="customTitle" style="cursor:pointer;font-weight:700">🎛️ Custom Band Builder</summary><p class="muted" id="customHelp">Tentukan jumlah sumber; stereo dihitung sebagai 2 channel. Maksimal 32 CH.</p><div class="grid" id="customFields"></div><div class="toolbar"><button id="buildCustom" class="primary">Generate Custom Inputs</button></div></details></section>
 <section class="card hide" id="s1"><h2 data-i="inputs">2. Daftar Input</h2><p class="muted" data-i="inputHelp">Ketuk nama untuk mengubah. Bisa paste daftar nama per baris.</p><div class="toolbar"><button class="secondary" id="paste" data-i="paste">Tempel daftar input</button><button class="ghost" id="clearNames" data-i="clear">Kosongkan nama</button></div><div class="tablewrap"><table><thead><tr><th>CH</th><th data-i="name">Nama</th><th data-i="color">Warna</th><th data-i="stereo">Stereo Link</th></tr></thead><tbody id="inputRows"></tbody></table></div></section>
 <section class="card hide" id="s2"><h2 data-i="buses">3. Konfigurasi Bus</h2><p class="muted" data-i="busHelp">Buat monitor stereo dengan satu tombol. Pasangan stereo menggunakan bus ganjil–genap.</p><div class="toolbar"><button class="secondary" id="iem" data-i="iem">Buat 5 Stereo IEM</button><button class="ghost" id="clearBuses" data-i="clearBus">Reset bus</button></div><div class="tablewrap"><table><thead><tr><th>BUS</th><th data-i="name">Nama</th><th data-i="type">Tipe</th><th data-i="tap">Tap Point</th><th data-i="stereo">Stereo</th></tr></thead><tbody id="busRows"></tbody></table></div></section>
 <section class="card hide" id="s3"><h2 data-i="review">4. Tinjau Konfigurasi</h2><div id="summary" class="summary"></div><div class="notice warn" style="margin-top:14px" data-i="warning">UJI COBA V0.3: SCN M32 tersedia. Send CH→Bus masih default −∞; belum ada kontrol DCA, Mute Group, FX, atau pembayaran. Selalu uji offline.</div><div class="toolbar"><button class="primary" id="json" data-i="export">Unduh konfigurasi JSON</button><button class="ghost" id="copy" data-i="copy">Salin ringkasan</button></div><div class="card" style="margin:12px 0"><h2>🎛️ M32 SCN — Preview &amp; Generate (V0.3)</h2><p class="muted">File SCN dibuat dari template M32 V2.6 yang pernah diuji. Nama/warna/link input dan nama/link bus mengikuti formulir. <strong>Send CH→Bus semuanya tetap −∞ (belum diatur lewat formulir).</strong> FX, DCA, Mute Group, routing fisik mengikuti default template. Master Bus/Matrix −∞ demi keamanan.</p><button class="primary" id="generateScn" type="button">Generate &amp; Download .SCN</button><p id="scnMessage" class="muted" role="status"></p></div><div class="card" style="margin:0"><h2 data-i="checkout">Checkout (simulasi)</h2><p class="muted" data-i="payInfo">Pembayaran belum diaktifkan. Tidak ada biaya yang dikenakan.</p><button disabled class="primary" data-i="pay">Bayar & Terima Show File — Segera Hadir</button></div></section>
-<div class="nav"><button id="back" class="secondary" data-i="back">← Kembali</button><button id="next" class="primary" data-i="next">Lanjut →</button></div><footer>SHOWFILE AUTO · V0.3.3 test · Not for live-console recall</footer></div><script>
+<div class="nav"><button id="back" class="secondary" data-i="back">← Kembali</button><button id="next" class="primary" data-i="next">Lanjut →</button></div><footer>SHOWFILE AUTO · V0.3.4 test · Not for live-console recall</footer></div><script>
 const $=id=>document.getElementById(id);
 // Press Enter/Done to dismiss iPhone keyboard without an overlay.
 document.addEventListener('focusin', event => {
@@ -88,9 +88,26 @@ genBtn.addEventListener('click',async()=>{
   state=showfileState();
   const response=await fetch('./template.scn',{cache:'no-store'});if(!response.ok)throw Error('template.scn belum di-upload ke root GitHub.');
   const output=generate(await response.text());
-  const blob=new Blob([output],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download=(data.show.trim().replace(/[^a-z0-9_-]/gi,'_')||'SHOW')+'_M32_V03.scn';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
-  genMessage.textContent='SCN berhasil dibuat. Jika Telegram tidak mengunduhnya, coba buka Mini App di Safari. Uji file di M32-Edit secara offline.';
+  const filename=(data.show.trim().replace(/[^a-z0-9_-]/gi,'_')||'SHOW')+'_M32_V03.scn';
+  const blob=new Blob([output],{type:'application/octet-stream'});
+  const file=new File([blob],filename,{type:'application/octet-stream'});
+  // Telegram iOS WebView may display a Blob URL as text instead of downloading.
+  // The native iOS share sheet can save the actual file to Files.
+  if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+   try{
+    await navigator.share({files:[file],title:filename});
+    genMessage.textContent='File SCN siap. Pilih Save to Files / Simpan ke File di menu berbagi iPhone.';
+    return;
+   }catch(shareError){
+    if(shareError.name==='AbortError'){
+     genMessage.textContent='Berbagi dibatalkan. Tekan Generate lagi untuk menyimpan file.';
+     return;
+    }
+   }
+  }
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=filename;a.type='application/octet-stream';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+  genMessage.textContent='SCN dibuat. Jika Telegram menampilkan kode teks, buka aplikasi di Safari atau Chrome lalu generate ulang. Browser Telegram tidak selalu mendukung download Blob.';
  }catch(e){genMessage.textContent='Gagal: '+e.message;}finally{genBtn.disabled=false;}
 });
 </script>
