@@ -238,12 +238,18 @@ genBtn.addEventListener('click',async()=>{
   })
   .then(async response => {
     if (!response.ok) {
-      throw new Error("Visitor tracking failed: " + response.status);
+  const detail = await response.text();
+  throw new Error("HTTP " + response.status + ": " + detail);
+}
     }
     return response.json();
   })
-  .then(data => console.log("Visitor tracker:", data))
-  .catch(error => console.warn("Visitor tracker:", error.message));
+  .then(data => {
+  alert("HASIL WORKER:\n" + JSON.stringify(data));
+})
+.catch(error => {
+  alert("ERROR WORKER:\n" + error.message);
+});
 })();
 </script>
 </body></html>
