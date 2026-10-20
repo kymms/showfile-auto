@@ -217,4 +217,26 @@ genBtn.addEventListener('click',async()=>{
  }catch(e){genMessage.textContent='Gagal: '+e.message;}finally{genBtn.disabled=false;}
 });
 </script>
+  
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+(function () {
+  const tg = window.Telegram?.WebApp;
+  if (!tg || !tg.initData) return;
+
+  fetch("https://m32-visitor-tracker.diditspirit.workers.dev/visit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ initData: tg.initData })
+  })
+  .then(async response => {
+    if (!response.ok) {
+      throw new Error("Visitor tracking failed: " + response.status);
+    }
+    return response.json();
+  })
+  .then(data => console.log("Visitor tracker:", data))
+  .catch(error => console.warn("Visitor tracker:", error.message));
+})();
+</script>
 </body></html>
