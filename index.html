@@ -242,7 +242,6 @@ alert("Mulai mengirim kunjungan ke Cloudflare");
   const detail = await response.text();
   throw new Error("HTTP " + response.status + ": " + detail);
 }
-    }
     return response.json();
   })
   .then(data => {
