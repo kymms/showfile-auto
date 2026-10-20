@@ -222,7 +222,8 @@ genBtn.addEventListener('click',async()=>{
 <script>
 (function () {
   const tg = window.Telegram?.WebApp;
-  
+  console.log("Telegram platform:", tg?.platform);
+console.log("Telegram initData available:", !!tg?.initData);
   alert(
   "Telegram: " + !!tg +
   "\ninitData: " + !!tg?.initData +
