@@ -222,6 +222,13 @@ genBtn.addEventListener('click',async()=>{
 <script>
 (function () {
   const tg = window.Telegram?.WebApp;
+  
+  alert(
+  "Telegram: " + !!tg +
+  "\ninitData: " + !!tg?.initData +
+  "\nPanjang: " + (tg?.initData?.length || 0)
+);
+  
   if (!tg || !tg.initData) return;
 
   fetch("https://m32-visitor-tracker.diditspirit.workers.dev/visit", {
