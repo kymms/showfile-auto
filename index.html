@@ -230,6 +230,7 @@ genBtn.addEventListener('click',async()=>{
 );
   
   if (!tg || !tg.initData) return;
+  
 alert("Mulai mengirim kunjungan ke Cloudflare");
   fetch("https://m32-visitor-tracker.diditspirit.workers.dev/visit", {
     method: "POST",
